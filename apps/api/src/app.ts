@@ -1,6 +1,6 @@
 import express from "express";
 import taskRouter from "./modules/tasks/task.routes.js";
-
+import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 
@@ -13,5 +13,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/tasks", taskRouter);
+
+app.use(errorHandler);
 
 export default app;

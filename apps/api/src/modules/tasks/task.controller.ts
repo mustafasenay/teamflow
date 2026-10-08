@@ -1,26 +1,14 @@
 import type { Request, Response } from "express";
 import { createTask } from "./task.service.js";
-import { createTaskSchema } from "./task.schema.js";
+import type { CreateTaskInput } from "./task.schema.js";
 
 export const createTaskController = (
-  req: Request,
+  _req: Request,
   res: Response
 ): void => {
-  const result = createTaskSchema.safeParse(req.body);
+  const input = res.locals.validatedBody as CreateTaskInput;
 
-  if (!result.success) {
-    res.status(400).json({
-      error: {
-        code: "VALIDATION_ERROR",
-        message: "Invalid request data",
-        details: result.error.flatten().fieldErrors,
-      },
-    });
-
-    return;
-  }
-
-  const task = createTask(result.data);
+  const task = createTask(input);
 
   res.status(201).json(task);
 };
