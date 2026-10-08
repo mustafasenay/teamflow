@@ -1,4 +1,5 @@
-import type { CreateTaskInput, Task } from "./task.types.js";
+import type { CreateTaskInput } from "./task.schema.ts";
+import type { Task } from "./task.types.ts";
 
 const tasks: Task[] = [];
 

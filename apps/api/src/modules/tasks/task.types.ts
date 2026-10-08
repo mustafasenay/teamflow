@@ -6,8 +6,3 @@ export interface Task {
   description?: string;
   status: TaskStatus;
 }
-
-export interface CreateTaskInput {
-  title: string;
-  description?: string;
-}
